@@ -1,0 +1,17 @@
+{% extends 'flatpages/default.html' %}
+
+{% block content %}
+
+<html>
+{%if is_executors %}
+    <h2>Заявка: {{ task.text }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="СОХРАНИТЬ">
+    </form>
+{% else %}
+    <h2>Вы не являетесь исполнителем</h2>
+{% endif %}
+</html>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Task
+{% endblock title %}
+
+
+{% block content %}
+<table>
+                <tr>
+                   <th>Описание</th>
+                   <th>Клиент</th>
+                   <th>Дата и время поступления</th>
+                   <th>Статус</th>
+                   <th>Исполнитель</th>
+                   <th>Дата и время выполнения</th>
+                </tr>
+
+                    <td>{{ task.text }}</td>
+                    <td>{{ task.customer }}</td>
+                    <td>{{ task.time_in|date:'d M Y' }}</td>
+                    {% if task.complete %}
+                    <td>{{ task.get_complete_display }}</td>
+                    {% else %}
+                    <td>
+                        {{ task.get_complete_display }}
+
+                        <h><a href="{% url 'update' object.pk %}">ВЫПОЛНИТЬ<h></h>
+                    {% endif %}
+                    <td>{{ task.executor }}</td>
+                    <td>{{ task.time_out|date:'d M Y' }}</td>
+{% endblock content %}
+</table>
